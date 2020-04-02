@@ -8,6 +8,9 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
+import static java.awt.event.KeyEvent.VK_SHIFT;
+import static java.awt.event.KeyEvent.VK_SPACE;
+
 /**
  * This is a class
  * Created 2020-03-25
@@ -33,6 +36,7 @@ public class Graphics extends Canvas implements Runnable {
     private Sprite square1;
     private Sprite square2;
     private Sprite cirkel1;
+    private Sprite bullet1;
 
     private double t=0;
     private int xSquare1 = 0;
@@ -69,7 +73,7 @@ public class Graphics extends Canvas implements Runnable {
         s = new Sprite("sprite.png");
         square1 = new Sprite(16,16,0xFF00FF);
         square2 = new Sprite(32,8,0x00FF00);
-        cirkel1 = new Sprite(20,20 , 0x00FF00);
+        cirkel1 = new Sprite(16,16 , 0x00FF00);
     }
 
     private void draw() {
@@ -196,24 +200,35 @@ public class Graphics extends Canvas implements Runnable {
         @Override
         public void keyPressed(KeyEvent keyEvent) {
             if (keyEvent.getKeyChar()=='a') {
-                vxSquare1 = -5;
+                vxSquare1 = -10;
             } else if (keyEvent.getKeyChar()=='d') {
-                vxSquare1 = 5;
+                vxSquare1 = 10;
             } else if (keyEvent.getKeyChar()=='w') {
-                vySquare1 = -5;
+                vySquare1 = -10;
             } else if (keyEvent.getKeyChar()=='s') {
-                vySquare1 = 5;
+                vySquare1 = 10;
             }
 
-            if (keyEvent.getKeyChar()=='a') {
+            if (keyEvent.getKeyChar()=='k') {
                 vxcirkel1 = -10;
-            } else if (keyEvent.getKeyChar()=='d') {
+            } else if (keyEvent.getKeyChar()=='ö') {
                 vxcirkel1 = 10;
-            } else if (keyEvent.getKeyChar()=='w') {
+            } else if (keyEvent.getKeyChar()=='o') {
                 vycirkel1 = -10;
-            } else if (keyEvent.getKeyChar()=='s') {
+            } else if (keyEvent.getKeyChar()=='l') {
                 vycirkel1 = 10;
             }
+
+            if (keyEvent.getKeyChar()== VK_SHIFT + 'a'){
+                vxSquare1 = -15;
+            } else if (keyEvent.getKeyChar()== VK_SHIFT + 'd'){
+                vxSquare1 = 15;
+            } else if (keyEvent.getKeyChar()== VK_SHIFT + 'w'){
+                vySquare1 = 15;
+            } else if (keyEvent.getKeyChar()== VK_SHIFT + 's'){
+                vySquare1 = -15;
+            }
+
         }
 
 
@@ -225,9 +240,9 @@ public class Graphics extends Canvas implements Runnable {
                 vySquare1 = 0;
             }
 
-            if (keyEvent.getKeyChar()=='a' || keyEvent.getKeyChar()=='d') {
+            if (keyEvent.getKeyChar()=='k' || keyEvent.getKeyChar()=='ö') {
                 vxcirkel1 = 0;
-            } else if (keyEvent.getKeyChar()=='w' || keyEvent.getKeyChar()=='s') {
+            } else if (keyEvent.getKeyChar()=='o' || keyEvent.getKeyChar()=='l') {
                 vycirkel1 = 0;
             }
         }
